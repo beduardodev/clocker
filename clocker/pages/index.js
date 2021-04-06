@@ -42,18 +42,18 @@ export default function Home() {
       <Box>
         <FormControl id="email" p={4} isRequired>
           <FormLabel>Email</FormLabel>
-          <Input type="email" values={formik.values.email} />
+          <Input type="email" value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
         </FormControl>
 
         <FormControl id="password" p={4} isRequired>
           <FormLabel>Senha</FormLabel>
-          <Input type="password" values={formik.values.password} />
+          <Input type="password" value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur} />
         </FormControl>
 
         <Box display="flex" flexDirection="row" alignItems="center">
           <Text>clocker.work/</Text>
           <FormControl id="username" p={4} isRequired>
-            <Input type="username" values={formik.values.username} />
+            <Input type="username" value={formik.values.username} onChange={formik.handleChange} onBlur={formik.handleBlur} />
           </FormControl>
         </Box>
 
