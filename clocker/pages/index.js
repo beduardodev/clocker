@@ -14,7 +14,23 @@ import {
 
 import { Logo } from './../components'
 
+const validationSchema = yup.object().shape({
+  email: yup.string().email('Email inválido!').required('Preenchimento Obrigatório!'),
+  password: yup.string().required('Preenchimento Obrigatório!'),
+  username: yup.string().required('Preenchimento Obrigatório!')
+})
+
 export default function Home() {
+  const formik = useFormik({
+    onSubmit: () => { },
+    validationSchema,
+    initialValues: {
+      email: '',
+      username: '',
+      password: ''
+    }
+  })
+
   return (
     <Container p={4} centerContent>
       <Logo />
@@ -26,18 +42,18 @@ export default function Home() {
       <Box>
         <FormControl id="email" p={4} isRequired>
           <FormLabel>Email</FormLabel>
-          <Input type="email" />
+          <Input type="email" values={formik.values.email} />
         </FormControl>
 
         <FormControl id="password" p={4} isRequired>
           <FormLabel>Senha</FormLabel>
-          <Input type="password" />
+          <Input type="password" values={formik.values.password} />
         </FormControl>
 
         <Box display="flex" flexDirection="row" alignItems="center">
           <Text>clocker.work/</Text>
           <FormControl id="username" p={4} isRequired>
-            <Input type="username" />
+            <Input type="username" values={formik.values.username} />
           </FormControl>
         </Box>
 
