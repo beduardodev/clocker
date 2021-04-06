@@ -43,20 +43,20 @@ export default function Home() {
         <FormControl id="email" p={4} isRequired>
           <FormLabel>Email</FormLabel>
           <Input type="email" value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
-          <FormHelperText textColor="#e74c3c">{formik.errors.email}</FormHelperText>
+          {formik.touched.email && <FormHelperText textColor="#e74c3c">{formik.errors.email}</FormHelperText>}
         </FormControl>
 
         <FormControl id="password" p={4} isRequired>
           <FormLabel>Senha</FormLabel>
           <Input type="password" value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur} />
-          <FormHelperText textColor="#e74c3c">{formik.errors.password}</FormHelperText>
+          {formik.touched.password && <FormHelperText textColor="#e74c3c">{formik.errors.password}</FormHelperText>}
         </FormControl>
 
         <Box display="flex" flexDirection="row" alignItems="center">
           <Text>clocker.work/</Text>
           <FormControl id="username" p={4} isRequired>
-            <Input type="username" value={formik.values.username} onChange={formik.handleChange} />
-            <FormHelperText textColor="#e74c3c">{formik.errors.username}</FormHelperText>
+            <Input type="username" value={formik.values.username} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+            {formik.touched.username && <FormHelperText textColor="#e74c3c">{formik.errors.username}</FormHelperText>}
           </FormControl>
         </Box>
 
