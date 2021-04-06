@@ -1,4 +1,6 @@
-import { Logo } from './../components'
+import { useFormik } from 'formik'
+import * as yup from 'yup'
+
 import {
   Container,
   Box,
@@ -9,6 +11,8 @@ import {
   FormLabel,
   FormHelperText
 } from '@chakra-ui/react'
+
+import { Logo } from './../components'
 
 export default function Home() {
   return (
