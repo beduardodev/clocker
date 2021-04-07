@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 
@@ -80,6 +81,8 @@ export default function Home() {
         <Box p={4}>
           <Button colorScheme="blue" width="100%" onClick={handleSubmit} isLoading={isSubmitting}>Entrar</Button>
         </Box>
+
+        <Link href="/">Já tem uma conta? Clique aqui e Acesse!</Link>
 
       </Box>
     </Container>
