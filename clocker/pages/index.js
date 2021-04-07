@@ -28,9 +28,12 @@ export default function Home() {
     touched,
     handleChange,
     handleBlur,
-    handleSubmit
+    handleSubmit,
+    isSubmitting
   } = useFormik({
-    onSubmit: () => { },
+    onSubmit: (values, form) => {
+
+    },
     validationSchema,
     initialValues: {
       email: '',
@@ -69,7 +72,7 @@ export default function Home() {
         </FormControl>
 
         <Box p={4}>
-          <Button width="100%" onClick={handleSubmit}>Entrar</Button>
+          <Button colorScheme="blue" width="100%" onClick={handleSubmit} isLoading={isSubmitting}>Entrar</Button>
         </Box>
 
       </Box>
