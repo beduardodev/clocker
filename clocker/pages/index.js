@@ -9,7 +9,9 @@ import {
   Text,
   FormControl,
   FormLabel,
-  FormHelperText
+  FormHelperText,
+  InputLeftAddon,
+  InputGroup
 } from '@chakra-ui/react'
 
 import { Logo } from './../components'
@@ -48,23 +50,23 @@ export default function Home() {
       <Box>
         <FormControl id="email" p={4} isRequired>
           <FormLabel>Email</FormLabel>
-          <Input type="email" value={values.email} onChange={handleChange} onBlur={handleBlur} />
+          <Input size="lg" type="email" value={values.email} onChange={handleChange} onBlur={handleBlur} />
           {touched.email && <FormHelperText textColor="#e74c3c">{errors.email}</FormHelperText>}
         </FormControl>
 
         <FormControl id="password" p={4} isRequired>
           <FormLabel>Senha</FormLabel>
-          <Input type="password" value={values.password} onChange={handleChange} onBlur={handleBlur} />
+          <Input size="lg" type="password" value={values.password} onChange={handleChange} onBlur={handleBlur} />
           {touched.password && <FormHelperText textColor="#e74c3c">{errors.password}</FormHelperText>}
         </FormControl>
 
-        <Box display="flex" flexDirection="row" alignItems="center">
-          <Text>clocker.work/</Text>
-          <FormControl id="username" p={4} isRequired>
-            <Input type="username" value={values.username} onChange={handleChange} onBlur={handleBlur} />
-            {touched.username && <FormHelperText textColor="#e74c3c">{errors.username}</FormHelperText>}
-          </FormControl>
-        </Box>
+        <FormControl id="username" p={4} isRequired>
+          <InputGroup size="lg" >
+            <InputLeftAddon children="clocker.work/" />
+            <Input size="lg" type="username" value={values.username} onChange={handleChange} onBlur={handleBlur} />
+          </InputGroup>
+          {touched.username && <FormHelperText textColor="#e74c3c">{errors.username}</FormHelperText>}
+        </FormControl>
 
         <Box p={4}>
           <Button width="100%" onClick={handleSubmit}>Entrar</Button>
