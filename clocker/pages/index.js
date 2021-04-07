@@ -20,8 +20,7 @@ import firebase from '../config/firebase'
 
 const validationSchema = yup.object().shape({
     email: yup.string().email('Email inválido!').required('Preenchimento Obrigatório!'),
-    password: yup.string().required('Preenchimento Obrigatório!'),
-    username: yup.string().required('Preenchimento Obrigatório!')
+    password: yup.string().required('Preenchimento Obrigatório!')
 })
 
 export default function Home() {
