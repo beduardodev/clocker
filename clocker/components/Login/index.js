@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react'
 
 import { Logo } from '../Logo'
-import { persistenceMode, firebaseClient } from './../../config/firebase'
+import { persistenceMode, firebaseClient } from './../../config/firebase/client'
 import { useEffect } from 'react'
 
 const validationSchema = yup.object().shape({
