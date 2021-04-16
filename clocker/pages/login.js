@@ -13,22 +13,21 @@ import {
     FormControl,
     FormLabel,
     FormHelperText,
-    InputLeftAddon,
-    InputGroup
 } from '@chakra-ui/react'
 
 import { Logo, useAuth } from './../components'
 
 const validationSchema = yup.object().shape({
-    email: yup.string().email('Email inválido!').required('Preenchimento Obrigatório!'),
-    password: yup.string().required('Preenchimento Obrigatório!')
+    email: yup.string().email('E-mail inválido').required('Preenchimento obrigatório'),
+    password: yup.string().required('Preenchimento obrigatório'),
 })
 
 export default function Login() {
-    const [auth, { login }] = useAuth();
-    const router = useRouter();
+    const [auth, { login }] = useAuth()
+    const router = useRouter()
 
-    const { values,
+    const {
+        values,
         errors,
         touched,
         handleChange,
@@ -49,13 +48,11 @@ export default function Login() {
         auth.user && router.push('/agenda')
     }, [auth.user])
 
-
     return (
         <Container p={4} centerContent>
             <Logo />
-
             <Box p={4} mt={8}>
-                <Text>Crie sua agenda compartilhada!</Text>
+                <Text>Crie sua agenda compartilhada</Text>
             </Box>
 
             <Box>
@@ -74,10 +71,9 @@ export default function Login() {
                 <Box p={4}>
                     <Button colorScheme="blue" width="100%" onClick={handleSubmit} isLoading={isSubmitting}>Entrar</Button>
                 </Box>
-
-                <Link href="/signup">Ainda não tem uma conta? Clique aqui e cadastre-se!</Link>
-
             </Box>
+
+            <Link href="/signup">Ainda não tem uma conta? Cadastre-se</Link>
         </Container>
     )
 }

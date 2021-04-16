@@ -1,8 +1,8 @@
+import { useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
-
 
 import {
   Container,
@@ -18,20 +18,19 @@ import {
 } from '@chakra-ui/react'
 
 import { Logo, useAuth } from '../components'
-import { useEffect } from 'react'
-
 
 const validationSchema = yup.object().shape({
-  email: yup.string().email('Email inválido!').required('Preenchimento Obrigatório!'),
-  password: yup.string().required('Preenchimento Obrigatório!'),
-  username: yup.string().required('Preenchimento Obrigatório!')
+  email: yup.string().email('E-mail inválido').required('Preenchimento obrigatório'),
+  password: yup.string().required('Preenchimento obrigatório'),
+  username: yup.string().required('Preenchimento obrigatório'),
 })
 
 export default function Home() {
-  const [auth, { signup }] = useAuth();
-  const router = useRouter();
+  const [auth, { signup }] = useAuth()
+  const router = useRouter()
 
-  const { values,
+  const {
+    values,
     errors,
     touched,
     handleChange,
@@ -55,9 +54,8 @@ export default function Home() {
   return (
     <Container p={4} centerContent>
       <Logo />
-
       <Box p={4} mt={8}>
-        <Text>Crie sua agenda compartilhada!</Text>
+        <Text>Crie sua agenda compartilhada</Text>
       </Box>
 
       <Box>
@@ -74,9 +72,9 @@ export default function Home() {
         </FormControl>
 
         <FormControl id="username" p={4} isRequired>
-          <InputGroup size="lg" >
+          <InputGroup size="lg">
             <InputLeftAddon children="clocker.work/" />
-            <Input size="lg" type="username" value={values.username} onChange={handleChange} onBlur={handleBlur} />
+            <Input type="username" value={values.username} onChange={handleChange} onBlur={handleBlur} />
           </InputGroup>
           {touched.username && <FormHelperText textColor="#e74c3c">{errors.username}</FormHelperText>}
         </FormControl>
@@ -84,10 +82,9 @@ export default function Home() {
         <Box p={4}>
           <Button colorScheme="blue" width="100%" onClick={handleSubmit} isLoading={isSubmitting}>Entrar</Button>
         </Box>
-
-        <Link href="/">Já tem uma conta? Clique aqui e Acesse!</Link>
-
       </Box>
+
+      <Link href="/">Já tem uma conta? Acesse!</Link>
     </Container>
   )
 }
