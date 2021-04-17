@@ -1,20 +1,49 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { Button } from '@chakra-ui/react'
+import { useFetch } from '@refetty/react'
+import { axios } from 'axios'
+import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons'
+import { Button, Container, Box, IconButton } from '@chakra-ui/react'
 
-import { useAuth } from './../components'
+import { Logo, useAuth, formatDate } from './../components'
+
+const getAgenda = ({ token, when }) => axios({
+    method: 'get',
+    baseURL: '',
+    url: '/api/agenda',
+    params: { when },
+    Boxs: {
+        Authorization: `Bearer ${token}`
+    }
+})
+
+const Header = ({ children }) => (
+    <Box p={4} display='flex' alignItems='center' justifyContent='space-between'>
+        {children}
+    </Box>
+)
 
 export default function Agenda() {
-    const [auth, { logout }] = useAuth()
-    const router = useRouter()
+    const router = useRouter();
+    const [auth, { logout }] = useAuth();
+    const [when, setWehn] = useState(() => new Date());
+    // const [data, { loading, status, error }, fetch] = useFetch(() => getAgenda(when));
 
     useEffect(() => {
         !auth.user && router.push('/')
     }, [auth.user])
 
     return (
-        <div>
-            <Button onClick={logout}>Sair</Button>
-        </div>
+        <Container>
+            <Header>
+                <Logo size={150} />
+                <Button onClick={logout}>Sair</Button>
+            </Header>
+            <Box>
+                <IconButton icon={<ChevronLeftIcon />} />
+                <Box>{formatDate(new Date(), 'PPPP')}</Box>
+                <IconButton icon={<ChevronRightIcon />} />
+            </Box>
+        </Container>
     )
 }
