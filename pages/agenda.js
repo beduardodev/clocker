@@ -6,6 +6,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import { Button, Container, Box, IconButton } from '@chakra-ui/react'
 
 import { Logo, useAuth, formatDate } from './../components'
+import { addDays, subDays } from 'date-fns'
 
 const getAgenda = ({ token, when }) => axios({
     method: 'get',
@@ -26,8 +27,12 @@ const Header = ({ children }) => (
 export default function Agenda() {
     const router = useRouter();
     const [auth, { logout }] = useAuth();
-    const [when, setWehn] = useState(() => new Date());
+    const [when, setWhen] = useState(() => new Date());
     // const [data, { loading, status, error }, fetch] = useFetch(() => getAgenda(when));
+
+    const addDay = () => setWhen(addDays(when, 1));
+    const removeDay = () => setWhen(subDays(when, 1));
+
 
     useEffect(() => {
         !auth.user && router.push('/')
@@ -39,10 +44,10 @@ export default function Agenda() {
                 <Logo size={150} />
                 <Button onClick={logout}>Sair</Button>
             </Header>
-            <Box>
-                <IconButton icon={<ChevronLeftIcon />} />
-                <Box>{formatDate(new Date(), 'PPPP')}</Box>
-                <IconButton icon={<ChevronRightIcon />} />
+            <Box mt={8} display='flex' alignItems='center'>
+                <IconButton icon={<ChevronLeftIcon />} bg='transparent' onClick={removeDay} />
+                <Box flex={1} textAlign='center'>{formatDate(when, 'PPPP')}</Box>
+                <IconButton icon={<ChevronRightIcon />} bg='transparent' onClick={addDay} />
             </Box>
         </Container>
     )
